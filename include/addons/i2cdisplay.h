@@ -84,11 +84,13 @@ public:
 	void drawCapcom(int startX, int startY, int buttonRadius, int buttonPadding);
 	void drawCapcom6(int startX, int startY, int buttonRadius, int buttonPadding);
 	void drawSticklessButtons(int startX, int startY, int buttonRadius, int buttonPadding);
+	void drawReverseButtons(int startX, int startY, int buttonRadius, int buttonPadding);
 	void drawWasdButtons(int startX, int startY, int buttonRadius, int buttonPadding);
 	void drawArcadeButtons(int startX, int startY, int buttonRadius, int buttonPadding);
 	void drawSplashScreen(int splashMode, int splashSpeed);
 	void drawDancepadA(int startX, int startY, int buttonSize, int buttonPadding);
 	void drawDancepadB(int startX, int startY, int buttonSize, int buttonPadding);
+	void drawArcadeStickB(int startX, int startY, int buttonRadius, int buttonPadding);
 	uint8_t ucBackBuffer[1024];
 	OBDISP obd;
 	std::string statusBar;
