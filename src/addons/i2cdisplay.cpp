@@ -33,14 +33,17 @@ void I2CDisplayAddon::setup() {
 	clearScreen(1);
 	gamepad = Storage::getInstance().GetGamepad();
 	pGamepad = Storage::getInstance().GetProcessedGamepad();
-
 }
+
+    BoardOptions boardOptions = Storage::getInstance().getBoardOptions();
+    
 
 void I2CDisplayAddon::process() {
 	//Gamepad * gamepad = Storage::getInstance().GetGamepad();
 	//Gamepad * pGamepad = Storage::getInstance().GetProcessedGamepad();
 
 	clearScreen(0);
+	bool pressedPinReverse = (pGamepad->state.buttons & boardOptions.pinButtonReverse) == boardOptions.pinButtonReverse;
 	bool configMode = Storage::getInstance().GetConfigMode();
 	if (configMode == true ) {
 		drawStatusBar(gamepad);
@@ -403,7 +406,7 @@ void I2CDisplayAddon::drawReverseButtons(int startX, int startY, int buttonRadiu
 	obdPreciseEllipse(&obd, startX + (buttonMargin * 4.75), startY + buttonMargin - (buttonMargin / 4), buttonRadius, buttonRadius, 1, pGamepad->pressedR2());
 	obdPreciseEllipse(&obd, startX + (buttonMargin * 5.75), startY + buttonMargin, buttonRadius, buttonRadius, 1, pGamepad->pressedL2());
 
-	//obdPreciseEllipse(&obd, startX + (buttonMargin * 2.25), startY + buttonMargin * 1.875, buttonRadius, buttonRadius, 1, pGamepad->pressedReverse());
+	obdPreciseEllipse(&obd, startX + (buttonMargin * 2.25), startY + buttonMargin * 1.875, buttonRadius, buttonRadius, 1, pGamepad->pressedButton(boardOptions.pinButtonReverse));
 }
 
 void I2CDisplayAddon::drawWasdButtons(int startX, int startY, int buttonRadius, int buttonPadding)
