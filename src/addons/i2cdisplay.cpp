@@ -116,7 +116,7 @@ void I2CDisplayAddon::process() {
 				drawDancepadB(39, 12, 15, 2);
 				break;
 			case BUTTON_LAYOUT_STICKB:
-				drawArcadeStickB(8, 28, 8, 2);
+				drawArcadeStickB(16, 28, 8, 2);
 				break;
 		}
 	}
