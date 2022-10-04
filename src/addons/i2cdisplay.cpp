@@ -45,6 +45,7 @@ void I2CDisplayAddon::process() {
 	clearScreen(0);
 	bool pressedPinReverse = (pGamepad->state.buttons & boardOptions.pinButtonReverse) == boardOptions.pinButtonReverse;
 	bool configMode = Storage::getInstance().GetConfigMode();
+	bool pressedPinReverse = !gpio_get(boardOptions.pinButtonReverse);
 	if (configMode == true ) {
 		drawStatusBar(gamepad);
 		drawText(0, 3, "[Web Config Mode]");
