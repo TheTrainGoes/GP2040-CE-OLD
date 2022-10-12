@@ -17,6 +17,11 @@ const I2C_BLOCKS = [
 	{ label: 'i2c1', value: 1 },
 ];
 
+const BUTTON_LAYOUT = [
+	{ label: 'BUTTON_LAYOUT_STICK', value: 0 },
+	{ label: 'BUTTON_LAYOUT_STICKLESS', value: 1 },
+];
+
 const defaultValues = {
 	enabled: false,
 	sdaPin: -1,
@@ -26,6 +31,8 @@ const defaultValues = {
 	i2cSpeed: 400000,
 	flipDisplay: false,
 	invertDisplay: false,
+	button_layout: 0,
+
 };
 
 let usedPins = [];
@@ -38,6 +45,7 @@ const schema = yup.object().shape({
 	// eslint-disable-next-line no-template-curly-in-string
 	sclPin: yup.number().required().min(-1).max(29).test('', '${originalValue} is already assigned!', (value) => usedPins.indexOf(value) === -1).label('SCL Pin'),
 	i2cBlock: yup.number().required().oneOf(I2C_BLOCKS.map(o => o.value)).label('I2C Block'),
+	button_layout: yup.number().required().oneOf(BUTTON_LAYOUT.map(o => o.value)).label('Button layout'),
 	i2cSpeed: yup.number().required().label('I2C Speed'),
 	flipDisplay: yup.number().label('Flip Display'),
 	invertDisplay: yup.number().label('Invert Display'),
@@ -64,6 +72,8 @@ const FormContext = () => {
 			values.flipDisplay = parseInt(values.flipDisplay);
 		if (!!values.invertDisplay)
 			values.invertDisplay = parseInt(values.invertDisplay);
+		if (!!values.button_layout)
+			values.button_layout = parseInt(values.button_layout);
 	}, [values, setValues]);
 
 	return null;
@@ -235,6 +245,19 @@ export default function DisplayConfigPage() {
 								onChange={handleChange}
 							>
 								{ON_OFF_OPTIONS.map((o, i) => <option key={`invertDisplay-option-${i}`} value={o.value}>{o.label}</option>)}
+							</FormSelect>
+						<Row>
+							<FormSelect
+								label="Display Left"
+								name="button_layout"
+								className="form-select-sm"
+								groupClassName="col-sm-3 mb-3"
+								value={values.enabled}
+								error={errors.enabled}
+								isInvalid={errors.enabled}
+								onChange={handleChange}
+							>
+								{ON_OFF_OPTIONS.map((o, i) => <option key={`button_layout-${i}`} value={o.value}>{o.label}</option>)}
 							</FormSelect>
 						</Row>
 						<div className="mt-3">
