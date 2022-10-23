@@ -52,10 +52,12 @@ void I2CDisplayAddon::process() {
 		drawStatusBar(gamepad);
 		switch (BUTTON_LAYOUT)
 		{
+			case BUTTON_LAYOUT_NONEA:
+				drawNoneA(0, 0, 0, 0);
+				break;
 			case BUTTON_LAYOUT_STICK:
 				drawArcadeStick(8, 28, 8, 2);
 				break;
-
 			case BUTTON_LAYOUT_STICKLESS:
 				drawStickless(8, 20, 8, 2);
 				break;
@@ -82,6 +84,9 @@ void I2CDisplayAddon::process() {
 
 		switch (BUTTON_LAYOUT_RIGHT)
 		{
+			case BUTTON_LAYOUT_NONEB:
+				drawNoneB(0, 0, 0, 0);
+				break;
 			case BUTTON_LAYOUT_ARCADE:
 				drawArcadeButtons(8, 28, 8, 2);
 				break;
@@ -142,6 +147,14 @@ void I2CDisplayAddon::drawDiamond(int cx, int cy, int size, uint8_t colour, uint
 	obdDrawLine(&obd, cx, cy - size, cx + size, cy, colour, 0);
 	obdDrawLine(&obd, cx + size, cy, cx, cy + size, colour, 0);
 	obdDrawLine(&obd, cx, cy + size, cx - size, cy, colour, 0);
+}
+
+void I2CDisplayAddon::drawNoneA(int startX, int startY, int buttonRadius, int buttonPadding)
+{
+}
+
+void I2CDisplayAddon::drawNoneB(int startX, int startY, int buttonRadius, int buttonPadding)
+{
 }
 
 void I2CDisplayAddon::drawStickless(int startX, int startY, int buttonRadius, int buttonPadding)

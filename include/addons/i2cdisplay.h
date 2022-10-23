@@ -91,6 +91,8 @@ public:
 	void drawDancepadB(int startX, int startY, int buttonSize, int buttonPadding);
 	void drawTwinStickA(int startX, int startY, int buttonSize, int buttonPadding);
 	void drawTwinStickB(int startX, int startY, int buttonSize, int buttonPadding);
+	void drawNoneA(int startX, int startY, int buttonSize, int buttonPadding);
+	void drawNoneB(int startX, int startY, int buttonSize, int buttonPadding);
 	uint8_t ucBackBuffer[1024];
 	OBDISP obd;
 	std::string statusBar;
