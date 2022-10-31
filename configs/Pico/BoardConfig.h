@@ -174,6 +174,7 @@
 #define I2C_SPEED 400000
 #define DISPLAY_FLIP 0
 #define DISPLAY_INVERT 0
+#define DISPLAY_SIZE OLED_132x64
 
 // I2C Analog ADS1219 Add-on Options
 #define I2C_ANALOG1219_SDA_PIN -1
